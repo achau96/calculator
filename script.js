@@ -1,5 +1,5 @@
 const add = (a,b) => {
-  return a+b;
+  return (+a)+(+b);
 }
 
 const subtract = (a,b) => {
@@ -14,10 +14,18 @@ const divide = (a,b) => {
   return a/b;
 }
 
-const operate = (func,a,b) => {
-return func(a,b);
+const operate = (str,a,b) => {
+return list[str](a,b);
 }
 
+const list = {
+  "add" : add,
+  "subtract": subtract,
+  "multiply" : multiply,
+  "divide": divide,
+}
+
+let prevHolder = 0;
 let holder = 0;
 let storage = [];
 const numbers = document.querySelectorAll('#btn.num');
@@ -31,8 +39,8 @@ const pushToScreen = (e) => {
 if(screen.textContent == '0'){
   screen.textContent = "";
 }
-screen.textContent += e.target.value;
-holder = screen.textContent;
+holder += e.target.value;
+screen.textContent = Number(holder);
 }
 
 const clearAll = (e) => {
@@ -55,7 +63,20 @@ const removeOne = () => {
 const preOperate = (e) => {
   storage.push(holder);
   storage.push(e.target.value);
-  screen.textContent='0';
+  if(storage.length < 3){
+  screen.textContent=Number(holder);
+  holder = 0;
+  }
+  else {
+  holder = operate(storage[1],storage[0],storage[2]);
+  screen.textContent = holder;
+  storage = [];
+  if(e.target.value != 'equal'){
+    storage[0] = holder;
+    storage[1] = e.target.value;
+    holder = 0;
+  }
+}
   console.log(storage);
 }
 
