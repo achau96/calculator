@@ -40,6 +40,30 @@ h1 {
   border-width: 2px;
 }
 
+.clear {
+  background-color: blue;
+}
+
+.clear:hover {
+  background-color: rgb(18, 18, 209);
+}
+
+.delete {
+  background-color: red;
+}
+
+.delete:hover {
+  background-color: rgb(194, 34, 34);
+}
+
+.op {
+  background-color: rgb(185, 135, 41);
+}
+
+.op:hover {
+  background-color: rgb(146, 117, 62);
+}
+
 .equal {
   grid-column: 3/span 2;
   grid-row: 6;

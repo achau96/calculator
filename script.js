@@ -75,7 +75,9 @@ const preOperate = (e) => {
     if(storage[1] == 'divide' && storage[2] == 0){
       holder = "Error Buddy."
     }
-    else{  holder = operate(storage[1],storage[0],storage[2]);}
+    else{
+      holder = operate(storage[1],storage[0],storage[2]);
+    }
   screen.textContent = holder;
   storage = [];
   if(e.target.value != 'equal'){
