@@ -61,14 +61,21 @@ const removeOne = () => {
 }
 
 const preOperate = (e) => {
-  storage.push(holder);
-  storage.push(e.target.value);
+    storage.push(holder);
+    storage.push(e.target.value);
+
   if(storage.length < 3){
   screen.textContent=Number(holder);
   holder = 0;
+  if(e.target.value == 'equal'){
+    storage = [];
+  }
   }
   else {
-  holder = operate(storage[1],storage[0],storage[2]);
+    if(storage[1] == 'divide' && storage[2] == 0){
+      holder = "Error Buddy."
+    }
+    else{  holder = operate(storage[1],storage[0],storage[2]);}
   screen.textContent = holder;
   storage = [];
   if(e.target.value != 'equal'){
@@ -77,7 +84,7 @@ const preOperate = (e) => {
     holder = 0;
   }
 }
-  console.log(storage);
+console.log(storage);
 }
 
 numbers.forEach(number => number.addEventListener('click',pushToScreen))
